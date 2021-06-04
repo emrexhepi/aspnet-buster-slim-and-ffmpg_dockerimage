@@ -3,23 +3,23 @@ version: "3.2"
 services:
   api:
     image: mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
-    container_name: visualyst
+    container_name: buster-slim-ffmpg
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - "8081:80"
       - "4434:443"
       - "5555:5432"
     networks:
-      - visualyst
-    volumes:
-      - ./publish:/app/publish
-    environment:
-      - ENV=dev
+      - buster-slim-ffmpg
+    # volumes:
+    #   - ./:/app
+    # environment:
+    #   - ENV=dev
 
 networks:
-  visualyst:
+  buster-slim-ffmpg:
     driver: bridge
 
 volumes:
