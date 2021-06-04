@@ -1,0 +1,26 @@
+version: "3.2"
+
+services:
+  api:
+    image: mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
+    container_name: visualyst
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8081:80"
+      - "4434:443"
+      - "5555:5432"
+    networks:
+      - visualyst
+    volumes:
+      - ./publish:/app/publish
+    environment:
+      - ENV=dev
+
+networks:
+  visualyst:
+    driver: bridge
+
+volumes:
+  publish:
